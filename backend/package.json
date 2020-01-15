@@ -1,0 +1,10 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "license": "MIT",
+  "dependencies": {
+    "@koa/router": "^8.0.5",
+    "koa": "^2.11.0"
+  }
+}
