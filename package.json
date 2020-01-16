@@ -1,0 +1,8 @@
+{
+  "name": "lookup-service-for-abandoned-pets",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "cd frontend && yarn install && yarn build && cd ../backend && yarn install && node app.js"
+  }
+}
