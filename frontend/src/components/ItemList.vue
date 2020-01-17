@@ -7,7 +7,7 @@
             <v-img :src="item.filename" ></v-img>
           </v-avatar>
           <div>
-            <v-card-title class="justify-center">유기번호 {{ item.desertionNo }}</v-card-title>
+            <v-card-title class="justify-center justify-sm-start justify-md-start justify-lg-start justify-xl-start">유기번호 {{ item.desertionNo }}</v-card-title>
             <v-card-subtitle>
               발견장소: {{ item.happenPlace }}<br/>
               품종: {{ item.kindCd }}<br/>
