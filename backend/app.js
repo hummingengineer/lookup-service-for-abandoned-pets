@@ -4,6 +4,9 @@ const app = new Koa()
 const Router = require('@koa/router')
 const router = new Router()
 
+const serve = require('koa-static')
+app.use(serve(require('path').join(__dirname, '../', 'frontend', 'dist')))
+
 // 라우터 설정
 router.use('/recent', require('./routes/recent/index').routes())
 

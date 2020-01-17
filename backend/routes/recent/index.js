@@ -7,7 +7,7 @@ require('dotenv').config()
 const { SK } = process.env
 
 router.get('/dog', async ctx => {
-  const { data } = await axios.get(`http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?upkind=417000&pageNo=1&ServiceKey=${SK}`)
+  const { data } = await axios.get(`http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/abandonmentPublic?upkind=417000&pageNo=${ctx.query.page}&ServiceKey=${SK}`)
   ctx.body = {
     recentList: data.response.body.items.item,
     totalCount: data.response.body.totalCount

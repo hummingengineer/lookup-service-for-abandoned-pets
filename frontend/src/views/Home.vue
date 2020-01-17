@@ -32,6 +32,7 @@
 <script>
 import ItemList from '@/components/ItemList.vue'
 import Loading from '@/components/Loading.vue'
+const axios = require('axios')
 
 export default {
   name: 'home',
@@ -48,6 +49,32 @@ export default {
       page: 1,
       totalCount: null,
       loading: false
+    }
+  },
+
+  created: function () {
+    this.recentReq()
+  },
+
+  watch: {
+    tab: function () {
+      this.page = 1
+      this.recentReq()
+    },
+    page: function () {
+      this.recentReq()
+    }
+  },
+
+  methods: {
+    recentReq: function () {
+      this.loading = true
+      axios.get(`recent/${this.tab}?page=${this.page}`).then(({ data }) => {
+        if (!Array.isArray(data.recentList)) data.recentList = [data.recentList]
+        this.recentList = data.recentList
+        this.totalCount = data.totalCount
+        this.loading = false
+      })
     }
   }
 
