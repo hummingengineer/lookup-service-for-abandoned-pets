@@ -12,6 +12,22 @@
               </v-card-title>
             </v-row>
           </v-img>
+
+          <v-list two-line>
+
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="indigo">mdi-music-accidental-sharp</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ this.$route.params.info.desertionNo }}</v-list-item-title>
+                <v-list-item-subtitle>유기번호</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-divider inset/>
+
+          </v-list>
         </v-card>
       </v-col>
     </v-row>
