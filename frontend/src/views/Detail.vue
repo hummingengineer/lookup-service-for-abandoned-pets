@@ -66,6 +66,16 @@
 
             <v-divider inset/>
 
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="indigo">mdi-map-marker</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ this.$route.params.info.happenPlace }}</v-list-item-title>
+                <v-list-item-subtitle>발견 장소</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
           </v-list>
         </v-card>
       </v-col>
