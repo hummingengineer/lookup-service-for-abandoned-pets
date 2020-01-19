@@ -76,6 +76,21 @@
               </v-list-item-content>
             </v-list-item>
 
+            <v-list-item>
+              <v-list-item-action/>
+              <v-list-item-content>
+                <v-list-item-title>{{ this.$route.params.info.careAddr }}</v-list-item-title>
+                <v-list-item-subtitle>보호 장소</v-list-item-subtitle>
+              </v-list-item-content>
+              <v-list-item-action>
+                <v-btn icon :href="`https://map.naver.com/v5/search/${this.$route.params.info.careAddr}`" target="_blank">
+                  <v-icon color="grey lighten-1">mdi-crosshairs-gps</v-icon>
+                </v-btn>
+              </v-list-item-action>
+            </v-list-item>
+
+            <v-divider inset/>
+
           </v-list>
         </v-card>
       </v-col>
