@@ -27,6 +27,16 @@
 
             <v-divider inset/>
 
+            <v-list-item>
+              <v-list-item-icon>
+                <v-icon color="indigo">{{ this.$route.params.info.kindCd.slice(1, this.$route.params.info.kindCd.indexOf(']')) === '개' ? 'mdi-dog' : this.$route.params.info.kindCd.slice(1, this.$route.params.info.kindCd.indexOf(']')) === '고양이' ? 'mdi-cat' : 'mdi-cow' }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>
+                <v-list-item-title>{{ this.$route.params.info.kindCd }}</v-list-item-title>
+                <v-list-item-subtitle>품종</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
           </v-list>
         </v-card>
       </v-col>
