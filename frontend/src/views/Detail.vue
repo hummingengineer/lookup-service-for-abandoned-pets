@@ -37,6 +37,23 @@
               </v-list-item-content>
             </v-list-item>
 
+            <v-list-item>
+              <v-list-item-action/>
+              <v-list-item-content>
+                <div class="text-left">
+                  <v-chip class="ma-2">{{ this.$route.params.info.colorCd }}</v-chip>
+                  <v-chip class="ma-2">{{ this.$route.params.info.age }}</v-chip>
+                  <v-chip class="ma-2">{{ this.$route.params.info.weight }}</v-chip>
+                  <v-chip class="ma-2">{{ this.$route.params.info.sexCd === 'M' ? '수컷' : '암컷' }}</v-chip>
+                  <v-chip class="ma-2" v-if="this.$route.params.info.neuterYn === 'Y'">중성화</v-chip>
+                  <v-chip class="ma-2">{{ this.$route.params.info.specialMark }}</v-chip>
+                  <v-chip class="ma-2">{{ this.$route.params.info.processState }}</v-chip>
+                </div>
+              </v-list-item-content>
+            </v-list-item>
+
+            <v-divider inset/>
+
           </v-list>
         </v-card>
       </v-col>
