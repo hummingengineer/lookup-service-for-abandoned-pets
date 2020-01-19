@@ -119,7 +119,14 @@
 
 <script>
 export default {
-  name: 'detail'
+  name: 'detail',
+
+  data: function () {
+    return {
+      fullImageSwitch: false
+    }
+  }
+
 }
 </script>
 
