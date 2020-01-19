@@ -2,9 +2,9 @@
   <div>
     <v-row v-for="(item, i) in recentList" :key="i">
       <v-col>
-        <v-card class="d-sm-flex d-md-flex d-lg-flex d-xl-flex text-center text-sm-left text-md-left text-lg-left text-xl-left" hover>
+        <v-card :to="{ name: 'detail', params: { info: item } }" class="d-sm-flex d-md-flex d-lg-flex d-xl-flex text-center text-sm-left text-md-left text-lg-left text-xl-left" hover>
           <v-avatar class="ma-2" size="160" tile>
-            <v-img :src="item.filename" ></v-img>
+            <v-img :src="item.filename"/>
           </v-avatar>
           <div>
             <v-card-title class="justify-center justify-sm-start justify-md-start justify-lg-start justify-xl-start">유기번호 {{ item.desertionNo }}</v-card-title>
