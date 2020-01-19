@@ -101,6 +101,14 @@
               </v-list-item-content>
             </v-list-item>
 
+            <v-list-item>
+              <v-list-item-action/>
+              <v-list-item-content>
+                <v-list-item-title>{{ this.$route.params.info.officetel }}</v-list-item-title>
+                <v-list-item-subtitle>담당자 연락처</v-list-item-subtitle>
+              </v-list-item-content>
+            </v-list-item>
+
           </v-list>
         </v-card>
       </v-col>
