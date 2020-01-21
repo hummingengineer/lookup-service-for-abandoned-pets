@@ -29,6 +29,17 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col>
+        <p>동물 선택</p>
+        <v-radio-group v-model="upkindRadioBtn" row>
+          <v-radio label="개" value="417000"></v-radio>
+          <v-radio label="고양이" value="422400"></v-radio>
+          <v-radio label="기타 동물" value="429900"></v-radio>
+        </v-radio-group>
+      </v-col>
+    </v-row>
+
   </v-container>
 </template>
 
@@ -41,7 +52,9 @@ export default {
       beginModal: false,
       beginDate: new Date().toISOString().substr(0, 10),
       endModal: false,
-      endDate: new Date().toISOString().substr(0, 10)
+      endDate: new Date().toISOString().substr(0, 10),
+
+      upkindRadioBtn: null
     }
   }
 
