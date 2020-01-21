@@ -7,7 +7,7 @@
           <template v-slot:activator="{ on }">
             <v-text-field v-model="beginDate" label="검색 시작일" prepend-icon="mdi-calendar" readonly v-on="on"/>
           </template>
-          <v-date-picker v-model="beginDate" scrollable locale="ko-KR">
+          <v-date-picker v-model="beginDate" scrollable locale="ko-KR" :max="`${new Date().getFullYear()}-${('0' + new Date().getMonth() + 1).slice(-2)}-${new Date().getDate()}`">
             <v-spacer/>
             <v-btn text color="primary" @click="beginModal = false">취소</v-btn>
             <v-btn text color="primary" @click="$refs.beginDialog.save(beginDate)">확인</v-btn>
@@ -20,7 +20,7 @@
           <template v-slot:activator="{ on }">
             <v-text-field v-model="endDate" label="검색 종료일" prepend-icon="mdi-calendar" readonly v-on="on"/>
           </template>
-          <v-date-picker v-model="endDate" scrollable locale="ko-KR">
+          <v-date-picker v-model="endDate" scrollable locale="ko-KR" :max="`${new Date().getFullYear()}-${('0' + new Date().getMonth() + 1).slice(-2)}-${new Date().getDate()}`">
             <v-spacer/>
             <v-btn text color="primary" @click="endModal = false">취소</v-btn>
             <v-btn text color="primary" @click="$refs.endDialog.save(endDate)">확인</v-btn>
@@ -50,9 +50,9 @@ export default {
   data: function () {
     return {
       beginModal: false,
-      beginDate: new Date().toISOString().substr(0, 10),
+      beginDate: `${new Date().getFullYear()}-${('0' + new Date().getMonth() + 1).slice(-2)}-${new Date().getDate()}`,
       endModal: false,
-      endDate: new Date().toISOString().substr(0, 10),
+      endDate: `${new Date().getFullYear()}-${('0' + new Date().getMonth() + 1).slice(-2)}-${new Date().getDate()}`,
 
       upkindRadioBtn: null
     }
