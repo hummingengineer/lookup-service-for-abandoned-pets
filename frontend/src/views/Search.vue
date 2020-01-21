@@ -34,7 +34,17 @@
 
 <script>
 export default {
-  name: 'search'
+  name: 'search',
+
+  data: function () {
+    return {
+      beginModal: false,
+      beginDate: new Date().toISOString().substr(0, 10),
+      endModal: false,
+      endDate: new Date().toISOString().substr(0, 10)
+    }
+  }
+
 }
 </script>
 
