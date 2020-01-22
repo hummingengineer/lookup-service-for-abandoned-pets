@@ -40,6 +40,17 @@
       </v-col>
     </v-row>
 
+    <v-row>
+      <v-col>
+        <p>중성화 여부</p>
+        <v-radio-group v-model="neuterRadioBtn" row>
+          <v-radio label="전체" value="null"></v-radio>
+          <v-radio label="예" value="Y"></v-radio>
+          <v-radio label="아니오" value="N"></v-radio>
+        </v-radio-group>
+      </v-col>
+    </v-row>
+
   </v-container>
 </template>
 
@@ -54,7 +65,8 @@ export default {
       endModal: false,
       endDate: `${new Date().getFullYear()}-${('0' + new Date().getMonth() + 1).slice(-2)}-${new Date().getDate()}`,
 
-      upkindRadioBtn: null
+      upkindRadioBtn: null,
+      neuterRadioBtn: null
     }
   }
 
