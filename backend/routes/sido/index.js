@@ -6,9 +6,9 @@ const axios = require('axios')
 require('dotenv').config()
 const { SK } = process.env
 
-// 품종 조회
+// 시도 조회
 router.get('/', async ctx => {
-  const { data } = await axios.get(`http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/kind?up_kind_cd=${ctx.query.up_kind_cd}&ServiceKey=${SK}`)
+  const { data } = await axios.get(`http://openapi.animal.go.kr/openapi/service/rest/abandonmentPublicSrvc/sido?ServiceKey=${SK}`)
   ctx.body = data.response.body.items.item
 })
 
