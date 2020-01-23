@@ -20,7 +20,7 @@
       </v-col>
     </v-row>
 
-    <ItemList :recentList="recentList" />
+    <ItemList :ItemList="recentList" />
 
     <v-pagination v-if="totalCount" v-model="page" class="my-2" :length="Math.ceil(totalCount/10)" total-visible="9" circle prev-icon="mdi-menu-left" next-icon="mdi-menu-right" />
 
@@ -70,9 +70,10 @@ export default {
     recentReq: function () {
       this.loading = true
       axios.get(`recent/${this.tab}?page=${this.page}`).then(({ data }) => {
+        this.totalCount = data.totalCount
+        if (this.totalCount === 0) { this.recentList = null; this.loading = false; return }
         if (!Array.isArray(data.recentList)) data.recentList = [data.recentList]
         this.recentList = data.recentList
-        this.totalCount = data.totalCount
         this.loading = false
       })
     }

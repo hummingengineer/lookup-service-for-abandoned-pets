@@ -46,7 +46,7 @@
                   <v-chip class="ma-2">{{ this.$route.params.info.weight }}</v-chip>
                   <v-chip class="ma-2">{{ this.$route.params.info.sexCd === 'M' ? '수컷' : '암컷' }}</v-chip>
                   <v-chip class="ma-2" v-if="this.$route.params.info.neuterYn === 'Y'">중성화</v-chip>
-                  <v-chip class="ma-2">{{ this.$route.params.info.specialMark }}</v-chip>
+                  <v-chip class="ma-2" v-if="this.$route.params.info.specialMark && this.$route.params.info.specialMark.trim()">{{ this.$route.params.info.specialMark }}</v-chip>
                   <v-chip class="ma-2">{{ this.$route.params.info.processState }}</v-chip>
                 </div>
               </v-list-item-content>

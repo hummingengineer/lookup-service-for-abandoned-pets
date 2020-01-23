@@ -9,6 +9,7 @@ app.use(serve(require('path').join(__dirname, '../', 'frontend', 'dist')))
 
 // 라우터 설정
 router.use('/recent', require('./routes/recent/index').routes())  // './routes/recent/index' 라우트를 /recent 경로 하위 라우트로 설정
+router.use('/search', require('./routes/search/index').routes())
 router.use('/kind', require('./routes/kind/index').routes())
 router.use('/sido', require('./routes/sido/index').routes())
 router.use('/sigungu', require('./routes/sigungu/index').routes())

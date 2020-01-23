@@ -91,11 +91,17 @@
       </v-col>
     </v-row>
 
-    <ItemList v-if="searchList" :searchList="searchList" />
+    <ItemList v-if="searchList" :ItemList="searchList"/>
 
-    <v-pagination v-if="totalCount" v-model="page" class="my-2" :length="Math.ceil(totalCount/10)" total-visible="9" circle prev-icon="mdi-menu-left" next-icon="mdi-menu-right" />
+    <v-row v-if="totalCount === 0" class="text-center">
+      <v-col>
+        검색 결과가 없습니다
+      </v-col>
+    </v-row>
 
-    <Loading :loading="loading" />
+    <v-pagination v-if="totalCount" v-model="page" class="my-2" :length="Math.ceil(totalCount/10)" total-visible="9" circle prev-icon="mdi-menu-left" next-icon="mdi-menu-right"/>
+
+    <Loading :loading="loading"/>
 
     <v-btn v-if="dateCheckBox || upkindCheckBox || kindCheckBox || uprCheckBox || orgCheckBox || neuterCheckBox" fixed :x-large="$vuetify.breakpoint.name === 'xs' ? false : true" fab bottom right color="pink" dark @click="searchPet">
       <v-icon>mdi-magnify</v-icon>
@@ -200,12 +206,13 @@ export default {
       if (this.kindCheckBox && this.kindItem) url += `&kind=${this.kindItem}`
       if (this.uprCheckBox && this.uprItem) url += `&upr_cd=${this.uprItem}`
       if (this.orgCheckBox && this.orgItem) url += `&org_cd=${this.orgItem}`
-      if (this.neuterCheckBox && this.neuterRadioBtn) url += `&neuter_yn=${this.neuterRadioBtn}`
+      if (this.neuterCheckBox && this.neuterRadioBtn && this.neuterRadioBtn !== 0) url += `&neuter_yn=${this.neuterRadioBtn}`
 
       axios.get(`${url}&pageNo=${this.page}`).then(({ data }) => {
+        this.totalCount = data.totalCount
+        if (this.totalCount === 0) { this.searchList = null; this.loading = false; return }
         if (!Array.isArray(data.searchList)) data.searchList = [data.searchList]
         this.searchList = data.searchList
-        this.totalCount = data.totalCount
         this.loading = false
       })
     }
