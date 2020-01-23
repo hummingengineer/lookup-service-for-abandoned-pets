@@ -68,6 +68,13 @@
       </v-col>
     </v-row>
 
+    <v-row v-if="uprCheckBox">
+      <v-col>
+        <p>시/도 선택</p>
+        <v-autocomplete v-model="uprItem" :items="uprItems" item-text="orgdownNm" item-value="orgCd" label="시/도 검색" no-data-text="검색 결과가 없습니다" outlined clearable/>
+      </v-col>
+    </v-row>
+
     <v-row v-if="neuterCheckBox">
       <v-col>
         <p>중성화 여부</p>
@@ -83,6 +90,8 @@
 </template>
 
 <script>
+const axios = require('axios')
+
 export default {
   name: 'search',
 
@@ -105,6 +114,9 @@ export default {
       kindItem: null,
       kindItems: null,
 
+      uprItem: null,
+      uprItems: null,
+
       neuterRadioBtn: null
     }
   },
@@ -120,6 +132,12 @@ export default {
       if (!this.upkindRadioBtn || !val) return
       axios.get(`kind?up_kind_cd=${this.upkindRadioBtn}`).then(({ data }) => {
         this.kindItems = data
+      })
+    },
+    uprCheckBox: function (val) {
+      if (!val) return
+      axios.get('sido').then(({ data }) => {
+        this.uprItems = data
       })
     }
   }
