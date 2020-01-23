@@ -12,9 +12,6 @@
         <v-checkbox v-model="uprCheckBox" class="mx-2" label="시/도 선택"/>
       </v-col>
       <v-col>
-        <v-checkbox v-model="orgCheckBox" class="mx-2" label="시/군/구 선택"/>
-      </v-col>
-      <v-col>
         <v-checkbox v-model="neuterCheckBox" class="mx-2" label="중성화 여부 선택"/>
       </v-col>
     </v-row>
@@ -72,6 +69,14 @@
       <v-col>
         <p>시/도 선택</p>
         <v-autocomplete v-model="uprItem" :items="uprItems" item-text="orgdownNm" item-value="orgCd" label="시/도 검색" no-data-text="검색 결과가 없습니다" outlined clearable/>
+        <v-checkbox v-if="uprItem" v-model="orgCheckBox" label="시/군/구 선택"/>
+      </v-col>
+    </v-row>
+
+    <v-row v-if="uprCheckBox && uprItem && orgCheckBox">
+      <v-col>
+        <p>시/군/구 선택</p>
+        <v-autocomplete v-model="orgItem" :items="orgItems" item-text="orgdownNm" item-value="orgCd" label="시/군/구 검색" no-data-text="검색 결과가 없습니다" outlined clearable/>
       </v-col>
     </v-row>
 
@@ -117,6 +122,9 @@ export default {
       uprItem: null,
       uprItems: null,
 
+      orgItem: null,
+      orgItems: null,
+
       neuterRadioBtn: null
     }
   },
@@ -134,10 +142,24 @@ export default {
         this.kindItems = data
       })
     },
+
     uprCheckBox: function (val) {
       if (!val) return
       axios.get('sido').then(({ data }) => {
         this.uprItems = data
+      })
+    },
+
+    uprItem: function (val) {
+      if (!this.uprCheckBox) return
+      axios.get(`sigungu?upr_cd=${val}`).then(({ data }) => {
+        this.orgItems = data
+      })
+    },
+    orgCheckBox: function (val) {
+      if (!this.uprItem || !val) return
+      axios.get(`sigungu?upr_cd=${this.uprItem}`).then(({ data }) => {
+        this.orgItems = data
       })
     }
   }
