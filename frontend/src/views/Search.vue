@@ -1,7 +1,31 @@
 <template>
   <v-container>
 
-    <v-row>
+    <v-row class="mb-6 mb-sm-0 mb-lg-0 mb-xl-0">
+      <v-col>
+        <v-checkbox v-model="dateMenu" class="mx-2" label="날짜 선택"/>
+      </v-col>
+      <v-col>
+        <v-checkbox v-model="upkindMenu" class="mx-2" label="동물 선택"/>
+      </v-col>
+      <v-col>
+        <v-checkbox v-model="kindMenu" class="mx-2" label="품종 선택"/>
+      </v-col>
+      <v-col>
+        <v-checkbox v-model="uprMenu" class="mx-2" label="시/도 선택"/>
+      </v-col>
+      <v-col>
+        <v-checkbox v-model="orgMenu" class="mx-2" label="시/군/구 선택"/>
+      </v-col>
+      <v-col>
+        <v-checkbox v-model="neuterMenu" class="mx-2" label="중성화 여부 선택"/>
+      </v-col>
+    </v-row>
+
+    <v-divider/>
+    <v-divider class="mb-1"/>
+
+    <v-row v-if="dateMenu">
       <v-col>
         <v-dialog ref="beginDialog" v-model="beginModal" :return-value.sync="beginDate" persistent width="290px">
           <template v-slot:activator="{ on }">
@@ -29,7 +53,7 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="upkindMenu">
       <v-col>
         <p>동물 선택</p>
         <v-radio-group v-model="upkindRadioBtn" row>
@@ -40,7 +64,7 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="neuterMenu">
       <v-col>
         <p>중성화 여부</p>
         <v-radio-group v-model="neuterRadioBtn" row>
@@ -60,12 +84,20 @@ export default {
 
   data: function () {
     return {
+      dateMenu: false,
+      upkindMenu: false,
+      kindMenu: false,
+      uprMenu: false,
+      orgMenu: false,
+      neuterMenu: false,
+
       beginModal: false,
       beginDate: `${new Date().getFullYear()}-${('0' + new Date().getMonth() + 1).slice(-2)}-${new Date().getDate()}`,
       endModal: false,
       endDate: `${new Date().getFullYear()}-${('0' + new Date().getMonth() + 1).slice(-2)}-${new Date().getDate()}`,
 
       upkindRadioBtn: null,
+
       neuterRadioBtn: null
     }
   }
