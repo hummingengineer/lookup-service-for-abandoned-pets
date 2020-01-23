@@ -91,14 +91,31 @@
       </v-col>
     </v-row>
 
+    <ItemList v-if="searchList" :searchList="searchList" />
+
+    <v-pagination v-if="totalCount" v-model="page" class="my-2" :length="Math.ceil(totalCount/10)" total-visible="9" circle prev-icon="mdi-menu-left" next-icon="mdi-menu-right" />
+
+    <Loading :loading="loading" />
+
+    <v-btn v-if="dateCheckBox || upkindCheckBox || kindCheckBox || uprCheckBox || orgCheckBox || neuterCheckBox" fixed :x-large="$vuetify.breakpoint.name === 'xs' ? false : true" fab bottom right color="pink" dark @click="searchPet">
+      <v-icon>mdi-magnify</v-icon>
+    </v-btn>
+
   </v-container>
 </template>
 
 <script>
+import ItemList from '@/components/ItemList.vue'
+import Loading from '@/components/Loading.vue'
 const axios = require('axios')
 
 export default {
   name: 'search',
+
+  components: {
+    ItemList,
+    Loading
+  },
 
   data: function () {
     return {
@@ -125,7 +142,12 @@ export default {
       orgItem: null,
       orgItems: null,
 
-      neuterRadioBtn: null
+      neuterRadioBtn: null,
+
+      searchList: null,
+      page: 1,
+      totalCount: null,
+      loading: false
     }
   },
 
@@ -160,6 +182,31 @@ export default {
       if (!this.uprItem || !val) return
       axios.get(`sigungu?upr_cd=${this.uprItem}`).then(({ data }) => {
         this.orgItems = data
+      })
+    },
+
+    page: function () {
+      this.searchPet()
+    }
+  },
+
+  methods: {
+    searchPet: function () {
+      this.loading = true
+
+      let url = 'search?'
+      if (this.dateCheckBox) url += `bgnde=${this.beginDate}&endde=${this.endDate}`
+      if (this.upkindCheckBox && this.upkindRadioBtn) url += `&upkind=${this.upkindRadioBtn}`
+      if (this.kindCheckBox && this.kindItem) url += `&kind=${this.kindItem}`
+      if (this.uprCheckBox && this.uprItem) url += `&upr_cd=${this.uprItem}`
+      if (this.orgCheckBox && this.orgItem) url += `&org_cd=${this.orgItem}`
+      if (this.neuterCheckBox && this.neuterRadioBtn) url += `&neuter_yn=${this.neuterRadioBtn}`
+
+      axios.get(`${url}&pageNo=${this.page}`).then(({ data }) => {
+        if (!Array.isArray(data.searchList)) data.searchList = [data.searchList]
+        this.searchList = data.searchList
+        this.totalCount = data.totalCount
+        this.loading = false
       })
     }
   }
