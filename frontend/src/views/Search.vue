@@ -8,6 +8,7 @@
       <v-col>
         <v-checkbox v-model="upkindCheckBox" class="mx-2" label="동물 선택"/>
       </v-col>
+      <v-responsive v-if="$vuetify.breakpoint.xsOnly" width="100%"/>
       <v-col>
         <v-checkbox v-model="uprCheckBox" class="mx-2" label="시/도 선택"/>
       </v-col>
