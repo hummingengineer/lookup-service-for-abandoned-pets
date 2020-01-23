@@ -58,6 +58,13 @@
           <v-radio label="고양이" value="422400"></v-radio>
           <v-radio label="기타 동물" value="429900"></v-radio>
         </v-radio-group>
+        <v-checkbox v-if="upkindRadioBtn" v-model="kindCheckBox" label="품종 선택"/>
+      </v-col>
+    </v-row>
+
+    <v-row v-if="upkindCheckBox && upkindRadioBtn && kindCheckBox">
+      <v-col>
+        <v-autocomplete v-model="kindItem" :items="kindItems" item-text="KNm" item-value="kindCd" label="품종 검색" no-data-text="검색 결과가 없습니다" outlined clearable/>
       </v-col>
     </v-row>
 
@@ -95,7 +102,25 @@ export default {
 
       upkindRadioBtn: null,
 
+      kindItem: null,
+      kindItems: null,
+
       neuterRadioBtn: null
+    }
+  },
+
+  watch: {
+    upkindRadioBtn: function (val) {
+      if (!this.kindCheckBox) return
+      axios.get(`kind?up_kind_cd=${val}`).then(({ data }) => {
+        this.kindItems = data
+      })
+    },
+    kindCheckBox: function (val) {
+      if (!this.upkindRadioBtn || !val) return
+      axios.get(`kind?up_kind_cd=${this.upkindRadioBtn}`).then(({ data }) => {
+        this.kindItems = data
+      })
     }
   }
 
