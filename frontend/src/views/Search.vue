@@ -75,7 +75,6 @@
 
     <v-row v-if="uprCheckBox && uprItem && orgCheckBox">
       <v-col>
-        <p>시/군/구 선택</p>
         <v-autocomplete v-model="orgItem" :items="orgItems" item-text="orgdownNm" item-value="orgCd" label="시/군/구 검색" no-data-text="검색 결과가 없습니다" outlined clearable/>
       </v-col>
     </v-row>
@@ -84,7 +83,7 @@
       <v-col>
         <p>중성화 여부</p>
         <v-radio-group v-model="neuterRadioBtn" row>
-          <v-radio label="전체" value="null"></v-radio>
+          <v-radio label="전체" :value="0"></v-radio> <!-- null이라고 적으면 숫자 0으로 변환된다 -->
           <v-radio label="예" value="Y"></v-radio>
           <v-radio label="아니오" value="N"></v-radio>
         </v-radio-group>
