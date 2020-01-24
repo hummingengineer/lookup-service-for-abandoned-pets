@@ -31,7 +31,7 @@
         </template>
         <v-list>
           <v-list-item>
-            <v-list-item-title>개발자 홈페이지</v-list-item-title>
+            <v-list-item-title><a style="text-decoration: none;" href="https://github.com/hummingengineer/lookup-service-for-abandoned-pets" target="_blank">개발자 홈페이지</a></v-list-item-title>
           </v-list-item>
         </v-list>
       </v-menu>
