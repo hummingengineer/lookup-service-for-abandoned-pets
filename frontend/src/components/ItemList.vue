@@ -2,7 +2,7 @@
   <div>
     <v-row v-for="(item, i) in ItemList" :key="i">
       <v-col>
-        <v-card :to="{ name: 'detail', params: { info: item } }" class="d-sm-flex d-md-flex d-lg-flex d-xl-flex text-center text-sm-left text-md-left text-lg-left text-xl-left" hover>
+        <v-card :to="{ name: 'detail', params: { info: item } }" class="d-sm-flex d-md-flex d-lg-flex d-xl-flex text-center text-sm-left text-md-left text-lg-left text-xl-left" hover :max-width="$vuetify.breakpoint.xs ? '296' : undefined">
           <v-avatar class="ma-2" size="160" tile>
             <v-img :src="item.filename"/>
           </v-avatar>
