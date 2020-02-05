@@ -1,5 +1,10 @@
 # lookup-service-for-abandoned-pets
 
+## Project setup && Compiles and minifies for production
+```
+yarn start
+```
+
 ## Project setup
 ```
 yarn install
